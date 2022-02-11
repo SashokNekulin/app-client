@@ -11,6 +11,10 @@
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts ."
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SashokNekulin/app-client.git"
+  },
   "keywords": [],
   "author": {
     "name": "TechnoFrance",
