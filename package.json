@@ -1,7 +1,7 @@
 {
   "name": "app-client",
   "productName": "app-client",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "TechnoFrance APP",
   "main": "dist/index.js",
   "scripts": {
