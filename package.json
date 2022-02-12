@@ -1,7 +1,7 @@
 {
   "name": "app-client",
   "productName": "app-client",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "TechnoFrance APP",
   "main": "dist/index.js",
   "scripts": {
@@ -23,24 +23,39 @@
   "license": "MIT",
   "config": {
     "forge": {
+      "nameShort": "ТехноФранц",
+      "nameLong": "ТехноФранц Windows APP",
+      "applicationName": "технофранц",
+      "win32NameVersion": "ТехноФранц Windows APP",
+      "win32DirName": "ТехноФранц Windows APP",
+      "win32SetupExeBasename": "TechnoFranceSetup",
+      "win32AppUserModelId": "TechnoFrance.ClientApp",
+      "win32ShellNameShort": "ТехноФранц",
+      "win32MutexName": "technofrance",
+      "win32RegValueName": "TechnoFrance",
       "packagerConfig": {
-        "icon": "src/assets/tf.icon",
-        "nameShort": "ТехноФранц",
-        "nameLong": "ТехноФранц Windows APP",
-        "applicationName": "технофранц",
-        "win32NameVersion": "ТехноФранц Windows APP",
-        "win32DirName": "ТехноФранц Windows APP",
-        "win32SetupExeBasename": "TechnoFranceSetup",
-        "win32AppUserModelId": "TechnoFrance.ClientApp",
-        "win32ShellNameShort": "ТехноФранц",
-        "win32MutexName": "technofrance",
-        "win32RegValueName": "TechnoFrance"
+        "icon": "src/assets/tf.ico"
       },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "app_client"
+            "name": "app_client",
+            "forge": {
+              "packagerConfig": {
+                "icon": "src/assets/tf.ico",
+                "nameShort": "ТехноФранц",
+                "nameLong": "ТехноФранц Windows APP",
+                "applicationName": "технофранц",
+                "win32NameVersion": "ТехноФранц Windows APP",
+                "win32DirName": "ТехноФранц Windows APP",
+                "win32SetupExeBasename": "TechnoFranceSetup",
+                "win32AppUserModelId": "TechnoFrance.ClientApp",
+                "win32ShellNameShort": "ТехноФранц",
+                "win32MutexName": "technofrance",
+                "win32RegValueName": "TechnoFrance"
+              }
+            }
           }
         },
         {
