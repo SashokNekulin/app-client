@@ -11,7 +11,7 @@ class Listener {
 
     init = () => {
         ipcMain.on('electron_integration', (e: Electron.IpcMainEvent, arg: ElectronMessage) => {
-            if(arg.type !== 'CONTACTS:ONLINE') console.log(arg)
+            //if(arg.type !== 'CONTACTS:ONLINE') console.log(arg)
         })
     }
 

@@ -15,8 +15,8 @@ var RootApp = /** @class */ (function () {
                     preload: path.join(__dirname, "preload.js"),
                     contextIsolation: false
                 },
-                height: 600,
-                width: 800,
+                height: 800,
+                width: 1200,
                 show: false,
                 icon: path.join(__dirname, '..', '..', 'src', 'assets', 'favicon-32x32.png'),
                 frame: true
