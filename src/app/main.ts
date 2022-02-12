@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu, Tray, nativeImage, ipcMain } from "electron";
+import { BrowserWindow, Menu } from "electron";
 import * as path from "path";
 import { ConfigApp } from "./config";
 
@@ -11,7 +11,8 @@ class RootApp {
         webPreferences: {
           nodeIntegration: true,
           preload: path.join(__dirname, "preload.js"),
-          contextIsolation: false
+          contextIsolation: false,
+          nodeIntegrationInWorker: true
         },
         height: 800,
         width: 1200,

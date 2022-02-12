@@ -19,6 +19,7 @@ electron_1.app.on("window-all-closed", function () {
         electron_1.app.quit();
     }
 });
+//app.disableHardwareAcceleration()
 listener_1.AppListener.init();
 new trey_1.TrayApp().init();
 //# sourceMappingURL=index.js.map

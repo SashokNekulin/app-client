@@ -6,8 +6,7 @@ var Listener = /** @class */ (function () {
     function Listener() {
         this.init = function () {
             electron_1.ipcMain.on('electron_integration', function (e, arg) {
-                if (arg.type !== 'CONTACTS:ONLINE')
-                    console.log(arg);
+                //if(arg.type !== 'CONTACTS:ONLINE') console.log(arg)
             });
         };
     }

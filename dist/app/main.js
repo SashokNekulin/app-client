@@ -13,7 +13,8 @@ var RootApp = /** @class */ (function () {
                 webPreferences: {
                     nodeIntegration: true,
                     preload: path.join(__dirname, "preload.js"),
-                    contextIsolation: false
+                    contextIsolation: false,
+                    nodeIntegrationInWorker: true
                 },
                 height: 800,
                 width: 1200,
@@ -33,6 +34,16 @@ var RootApp = /** @class */ (function () {
             });
             var menu = electron_1.Menu.buildFromTemplate([]);
             electron_1.Menu.setApplicationMenu(menu);
+            /*const NOTIFICATION_TITLE = 'Basic Notification'
+            const NOTIFICATION_BODY = 'Notification from the Main process'
+    
+            function showNotification () {
+                new Notification({ title: NOTIFICATION_TITLE, body: NOTIFICATION_BODY }).show()
+            }
+            setTimeout(showNotification,3000)*/
+            setTimeout(function () {
+                electron_1.dialog.showMessageBox({ title: 'Тест', message: 'test message' });
+            }, 5000);
         };
     }
     return RootApp;

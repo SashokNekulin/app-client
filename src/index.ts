@@ -1,10 +1,9 @@
-import { app, BrowserWindow, Menu, Tray, nativeImage, ipcMain } from "electron";
-import * as path from "path";
+import { app, BrowserWindow, powerSaveBlocker} from "electron";
 import { AppListener } from "./app/listener";
 import { rootApp } from "./app/main";
 import { TrayApp } from "./app/trey";
 
-
+const power = powerSaveBlocker.start('prevent-app-suspension')
 
 if (require('electron-squirrel-startup')) {
   app.quit();
@@ -21,10 +20,15 @@ app.on("ready", () => {
 
 
 app.on("window-all-closed", () => {
+  powerSaveBlocker.stop(power)
   if (process.platform !== "darwin") {
     app.quit();
   }
 });
+
+
+
+//app.disableHardwareAcceleration()
 
 AppListener.init()
 new TrayApp().init()
