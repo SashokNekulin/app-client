@@ -4,6 +4,7 @@ var electron_1 = require("electron");
 var listener_1 = require("./app/listener");
 var main_1 = require("./app/main");
 var trey_1 = require("./app/trey");
+var power = electron_1.powerSaveBlocker.start('prevent-app-suspension');
 if (require('electron-squirrel-startup')) {
     electron_1.app.quit();
 }
@@ -15,6 +16,7 @@ electron_1.app.on("ready", function () {
     });
 });
 electron_1.app.on("window-all-closed", function () {
+    electron_1.powerSaveBlocker.stop(power);
     if (process.platform !== "darwin") {
         electron_1.app.quit();
     }

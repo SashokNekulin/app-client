@@ -12,7 +12,7 @@ class RootApp {
           nodeIntegration: true,
           preload: path.join(__dirname, "preload.js"),
           contextIsolation: false,
-          nodeIntegrationInWorker: true
+          //nodeIntegrationInWorker: true
         },
         height: 800,
         width: 1200,
