@@ -23,18 +23,8 @@
   "license": "MIT",
   "config": {
     "forge": {
-      "nameShort": "ТехноФранц",
-      "nameLong": "ТехноФранц Windows APP",
-      "applicationName": "технофранц",
-      "win32NameVersion": "ТехноФранц Windows APP",
-      "win32DirName": "ТехноФранц Windows APP",
-      "win32SetupExeBasename": "TechnoFranceSetup",
-      "win32AppUserModelId": "TechnoFrance.ClientApp",
-      "win32ShellNameShort": "ТехноФранц",
-      "win32MutexName": "technofrance",
-      "win32RegValueName": "TechnoFrance",
       "packagerConfig": {
-        "icon": "src/assets/tf.ico"
+        "icon": "src/assets/tf_icon.ico"
       },
       "makers": [
         {
@@ -43,17 +33,11 @@
             "name": "app_client",
             "forge": {
               "packagerConfig": {
-                "icon": "src/assets/tf.ico",
+                "icon": "src/assets/tf_icon.ico",
+                "executableName": "TechnoFranceSetup",
                 "nameShort": "ТехноФранц",
-                "nameLong": "ТехноФранц Windows APP",
-                "applicationName": "технофранц",
-                "win32NameVersion": "ТехноФранц Windows APP",
-                "win32DirName": "ТехноФранц Windows APP",
-                "win32SetupExeBasename": "TechnoFranceSetup",
-                "win32AppUserModelId": "TechnoFrance.ClientApp",
-                "win32ShellNameShort": "ТехноФранц",
-                "win32MutexName": "technofrance",
-                "win32RegValueName": "TechnoFrance"
+                "productName": "ТехноФранц Windows APP",
+                "applicationName": "технофранц"
               }
             }
           }
