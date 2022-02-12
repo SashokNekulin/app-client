@@ -4,7 +4,6 @@
   "version": "1.0.2",
   "description": "TechnoFrance APP",
   "main": "dist/index.js",
-  "icon": "src/assets/tf.icon",
   "scripts": {
     "start:dev": "tsc && electron-forge start",
     "package": "electron-forge package",
@@ -25,7 +24,17 @@
   "config": {
     "forge": {
       "packagerConfig": {
-
+        "icon": "src/assets/tf.icon",
+        "nameShort": "ТехноФранц",
+        "nameLong": "ТехноФранц Windows APP",
+        "applicationName": "технофранц",
+        "win32NameVersion": "ТехноФранц Windows APP",
+        "win32DirName": "ТехноФранц Windows APP",
+        "win32SetupExeBasename": "TechnoFranceSetup",
+        "win32AppUserModelId": "TechnoFrance.ClientApp",
+        "win32ShellNameShort": "ТехноФранц",
+        "win32MutexName": "technofrance",
+        "win32RegValueName": "TechnoFrance"
       },
       "makers": [
         {
