@@ -1,5 +1,6 @@
 import { app, Menu, Tray, nativeImage } from "electron";
 import * as path from "path";
+import { callApp } from "./call";
 import { rootApp } from "./main";
 
 export class TrayApp {
@@ -21,6 +22,16 @@ export class TrayApp {
                 {
                     label: 'Скрыть', type: 'normal', click: () => {
                         rootApp.mainWindow.hide()
+                    }
+                },
+                //callApp
+                {
+                    label: 'Позвонить', type: 'normal', click: () => {
+                        if (!callApp.mainWindow || callApp.mainWindow.isDestroyed()) {
+                            callApp.createWindow()
+                        } else {
+                            callApp.mainWindow.show()
+                        }
                     }
                 },
                 { type: 'separator' },

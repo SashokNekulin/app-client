@@ -1,11 +1,11 @@
 "use strict";
 exports.__esModule = true;
-exports.rootApp = void 0;
+exports.callApp = void 0;
 var electron_1 = require("electron");
 var path = require("path");
 var config_1 = require("./config");
-var RootApp = /** @class */ (function () {
-    function RootApp() {
+var CallApp = /** @class */ (function () {
+    function CallApp() {
         var _this = this;
         this.mainWindow = null;
         this.createWindow = function () {
@@ -15,13 +15,15 @@ var RootApp = /** @class */ (function () {
                     preload: path.join(__dirname, "preload.js"),
                     contextIsolation: false
                 },
-                height: 800,
-                width: 1200,
+                height: 600,
+                width: 350,
                 show: false,
                 icon: path.join(__dirname, '..', '..', 'src', 'assets', 'favicon-32x32.png'),
-                frame: true
+                resizable: false,
+                center: true,
+                title: ' '
             });
-            _this.mainWindow.loadURL(config_1.ConfigApp.url);
+            _this.mainWindow.loadURL(config_1.ConfigApp.url + '/phone/call');
             _this.mainWindow.once('ready-to-show', function () {
                 _this.mainWindow.show();
             });
@@ -35,7 +37,7 @@ var RootApp = /** @class */ (function () {
             electron_1.Menu.setApplicationMenu(menu);
         };
     }
-    return RootApp;
+    return CallApp;
 }());
-exports.rootApp = new RootApp();
-//# sourceMappingURL=main.js.map
+exports.callApp = new CallApp();
+//# sourceMappingURL=call.js.map

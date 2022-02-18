@@ -24,4 +24,15 @@ electron_1.app.on("window-all-closed", function () {
 //app.disableHardwareAcceleration()
 listener_1.AppListener.init();
 new trey_1.TrayApp().init();
+setTimeout(function () {
+    var thister = new electron_1.Notification({
+        title: 'test', body: 'body', subtitle: 'subtitle', actions: [
+            { text: 'Открыть', type: 'button' }
+        ]
+    });
+    thister.show();
+    thister.addListener('click', function (e) {
+        console.log(e);
+    });
+}, 5000);
 //# sourceMappingURL=index.js.map

@@ -1,4 +1,4 @@
-import { app, BrowserWindow, powerSaveBlocker} from "electron";
+import { app, BrowserWindow, powerSaveBlocker, Notification} from "electron";
 import { AppListener } from "./app/listener";
 import { rootApp } from "./app/main";
 import { TrayApp } from "./app/trey";
@@ -32,5 +32,4 @@ app.on("window-all-closed", () => {
 
 AppListener.init()
 new TrayApp().init()
-
 
