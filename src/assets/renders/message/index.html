@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="unread">
+            <div class="count" >
+                <div id="count"></div>
+            </div>
+            <div class="img">
+                <img src="notification.png">
+            </div>
+        </div> 
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const { ipcRenderer } = require('electron');
+        let count = document.getElementById('count');
+        ipcRenderer.on('asynchronous-reply', (event, arg) => {
+            count.innerHTML = arg;
+        });
+    });
+</script>
+
+</html>

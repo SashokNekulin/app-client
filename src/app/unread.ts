@@ -2,7 +2,8 @@ import { BrowserWindow, Menu , screen} from "electron";
 import * as path from "path";
 import { ConfigApp } from "./config";
 
-class CallApp {
+class UnreadApp {
+    
     public mainWindow: BrowserWindow = null
     
     public createWindow = () => {
@@ -14,20 +15,24 @@ class CallApp {
           contextIsolation: false,
           //nodeIntegrationInWorker: true
         },
-        height: 600,
-        width: 350,
-        x: s.workAreaSize.width - 345,
-        y: s.workAreaSize.height - 595,
+        width: 60,
+        height: 60,
+        x: s.workAreaSize.width - 60,
+        y: s.workAreaSize.height - 200,
         show: false,
         icon: path.join(__dirname, '..', '..', 'src', 'assets', 'favicon-32x32.png'),
         resizable: false,
         center: true,
-        //transparent: true,
-        //titleBarStyle: 'hidden'
+        transparent: true,
+        titleBarStyle: 'hidden',
+        alwaysOnTop: true,
+        type: 'toolbar',
+        closable: false,
+        minimizable: false
       });
   
-      this.mainWindow.loadURL(ConfigApp.url + '/phone/call');
-      //this.mainWindow.loadFile(path.join(__dirname, '..', '..', 'src', 'assets', 'renders', 'message', 'index.html' ))
+      //this.mainWindow.loadURL(ConfigApp.url + '/phone/call');
+      this.mainWindow.loadFile(path.join(__dirname, '..', '..', 'src', 'assets', 'renders', 'message', 'index.html' ))
 
       this.mainWindow.once('ready-to-show', () => {
         this.mainWindow.show()
@@ -41,8 +46,9 @@ class CallApp {
       })
       const menu = Menu.buildFromTemplate([])
       Menu.setApplicationMenu(menu)
+      
     }
 }
 
 
-export const callApp = new CallApp()
+export const unreadApp = new UnreadApp()

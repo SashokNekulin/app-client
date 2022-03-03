@@ -25,7 +25,7 @@ export class TrayApp {
                     }
                 },
                 //callApp
-                {
+                /*{
                     label: 'Позвонить', type: 'normal', click: () => {
                         if (!callApp.mainWindow || callApp.mainWindow.isDestroyed()) {
                             callApp.createWindow()
@@ -33,7 +33,7 @@ export class TrayApp {
                             callApp.mainWindow.show()
                         }
                     }
-                },
+                },*/
                 { type: 'separator' },
                 {
                     label: 'Выход', type: 'normal', click: () => {

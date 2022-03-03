@@ -1,4 +1,4 @@
-import { BrowserWindow, Menu } from "electron";
+import { BrowserWindow, Menu , screen} from "electron";
 import * as path from "path";
 import { ConfigApp } from "./config";
 
@@ -10,7 +10,7 @@ class RootApp {
       this.mainWindow = new BrowserWindow({
         webPreferences: {
           nodeIntegration: true,
-          preload: path.join(__dirname, "preload.js"),
+          preload: path.join(__dirname, '..', "preload.js"),
           contextIsolation: false,
           //nodeIntegrationInWorker: true
         },
@@ -33,6 +33,7 @@ class RootApp {
         e.preventDefault()
         this.mainWindow.hide()
       })
+
  
 
       const menu = Menu.buildFromTemplate([])

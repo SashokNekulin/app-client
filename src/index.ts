@@ -28,6 +28,7 @@ app.on("window-all-closed", () => {
 
 
 
+
 //app.disableHardwareAcceleration()
 
 AppListener.init()

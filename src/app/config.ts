@@ -1,4 +1,4 @@
 export const ConfigApp = {
     dev: false, 
-    url: "https://app.techno-france.ru"
+    url: "http://app.techno-france.ru"
 }

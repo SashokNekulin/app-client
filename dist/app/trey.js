@@ -3,7 +3,6 @@ exports.__esModule = true;
 exports.TrayApp = void 0;
 var electron_1 = require("electron");
 var path = require("path");
-var call_1 = require("./call");
 var main_1 = require("./main");
 var TrayApp = /** @class */ (function () {
     function TrayApp() {
@@ -29,16 +28,15 @@ var TrayApp = /** @class */ (function () {
                         }
                     },
                     //callApp
-                    {
-                        label: 'Позвонить', type: 'normal', click: function () {
-                            if (!call_1.callApp.mainWindow || call_1.callApp.mainWindow.isDestroyed()) {
-                                call_1.callApp.createWindow();
-                            }
-                            else {
-                                call_1.callApp.mainWindow.show();
+                    /*{
+                        label: 'Позвонить', type: 'normal', click: () => {
+                            if (!callApp.mainWindow || callApp.mainWindow.isDestroyed()) {
+                                callApp.createWindow()
+                            } else {
+                                callApp.mainWindow.show()
                             }
                         }
-                    },
+                    },*/
                     { type: 'separator' },
                     {
                         label: 'Выход', type: 'normal', click: function () {
