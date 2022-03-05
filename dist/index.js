@@ -9,25 +9,32 @@ if (require('electron-squirrel-startup')) {
     electron_1.app.quit();
 }
 var gotTheLock = electron_1.app.requestSingleInstanceLock();
-console.log(gotTheLock);
 if (!gotTheLock) {
     electron_1.app.quit();
-    electron_1.app.exit();
 }
-electron_1.app.on("ready", function () {
-    main_1.rootApp.createWindow();
-    electron_1.app.on("activate", function () {
-        if (electron_1.BrowserWindow.getAllWindows().length === 0)
+else {
+    electron_1.app.on('second-instance', function (event, commandLine, workingDirectory) {
+        if (!main_1.rootApp.mainWindow || main_1.rootApp.mainWindow.isDestroyed()) {
             main_1.rootApp.createWindow();
+        }
+        else {
+            main_1.rootApp.mainWindow.show();
+        }
     });
-});
-electron_1.app.on("window-all-closed", function () {
-    electron_1.powerSaveBlocker.stop(power);
-    if (process.platform !== "darwin") {
-        electron_1.app.quit();
-    }
-});
-//app.disableHardwareAcceleration()
-listener_1.AppListener.init();
-new trey_1.TrayApp().init();
+    electron_1.app.on("ready", function () {
+        main_1.rootApp.createWindow();
+        electron_1.app.on("activate", function () {
+            if (electron_1.BrowserWindow.getAllWindows().length === 0)
+                main_1.rootApp.createWindow();
+        });
+    });
+    electron_1.app.on("window-all-closed", function () {
+        electron_1.powerSaveBlocker.stop(power);
+        if (process.platform !== "darwin") {
+            electron_1.app.quit();
+        }
+    });
+    listener_1.AppListener.init();
+    new trey_1.TrayApp().init();
+}
 //# sourceMappingURL=index.js.map

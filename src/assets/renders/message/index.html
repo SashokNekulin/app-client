@@ -9,6 +9,9 @@
 </head>
 
 <body id="body">
+    <div class="dot">
+        <div class="drag">&Colon;</div>
+    </div>
     <div class="container" id="container">
         <div class="unread">
             <div class="count" >
@@ -41,8 +44,7 @@
         let int = false;
         setInterval(()=>{
             if(int){
-                container.classList.remove('animate__animated');
-                container.classList.remove('animate__swing');
+                container.classList.remove('animate__animated', 'animate__swing');
             }else{
                 container.classList.add('animate__animated','animate__swing');
             }

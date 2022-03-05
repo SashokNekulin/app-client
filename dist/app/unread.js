@@ -16,9 +16,9 @@ var UnreadApp = /** @class */ (function () {
                     preload: path.join(__dirname, '..', "preload.js"),
                     contextIsolation: false
                 },
-                width: 60,
-                height: 60,
-                x: s.workAreaSize.width - 80,
+                width: 70,
+                height: 100,
+                x: s.workAreaSize.width - 70,
                 y: s.workAreaSize.height - 200,
                 show: false,
                 icon: path.join(__dirname, '..', '..', 'src', 'assets', 'favicon-32x32.png'),

@@ -1,9 +1,30 @@
 body{
-    
     cursor: pointer;
 }
 
+.drag {
+    -webkit-app-region: drag;
+}
+.dot{
+    display: flex;
+    text-align: right;
+    color: #fff;
+    opacity: 0.3;
+    width: 100%;
+    justify-content: flex-end;
+}
+.dot div {
+    background: rgba(0, 0, 0, 0.3);
+    padding-top: 7px;
+    border-radius: 50%;
+    width: 17px;
+    height: 9px;
+    text-align: center;
+    line-height: 0;
+}
+
 .container {
+    margin-top: 6px;
     width: 40px;
     height: 40px;
     padding: 1px;
