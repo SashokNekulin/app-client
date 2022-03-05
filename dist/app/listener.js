@@ -2,6 +2,7 @@
 exports.__esModule = true;
 exports.AppListener = void 0;
 var electron_1 = require("electron");
+var main_1 = require("./main");
 var unread_1 = require("./unread");
 var Listener = /** @class */ (function () {
     function Listener() {
@@ -27,6 +28,12 @@ var Listener = /** @class */ (function () {
                                 unread_1.unreadApp.mainWindow.hide();
                             }
                             unread_1.unreadApp.mainWindow.webContents.send('asynchronous-reply', arg.message);
+                            break;
+                        case 'UNREAD:COUNT:CLICK':
+                            if (!main_1.rootApp.mainWindow || main_1.rootApp.mainWindow.isDestroyed()) {
+                                main_1.rootApp.createWindow();
+                            }
+                            main_1.rootApp.mainWindow.show();
                             break;
                         case 'ATS_BEELINE_ALL':
                             //console.log('ATS_BEELINE_ALL', arg.message)

@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-    <div class="container">
+<body id="body">
+    <div class="container" id="container">
         <div class="unread">
             <div class="count" >
                 <div id="count"></div>
@@ -22,11 +22,32 @@
 </body>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const { ipcRenderer } = require('electron');
-        let count = document.getElementById('count');
-        ipcRenderer.on('asynchronous-reply', (event, arg) => {
-            count.innerHTML = arg;
-        });
+        try {
+            const { ipcRenderer } = require('electron');
+            let count = document.getElementById('count');
+            
+            ipcRenderer.on('asynchronous-reply', (event, arg) => {
+                count.innerHTML = arg;
+            }); 
+
+            let body = document.getElementById('body');
+            body.onclick = () => { 
+                ipcRenderer.send('electron_integration', {type: 'UNREAD:COUNT:CLICK', message: true})
+            };
+        } catch (error) {
+           console.log('not found electron integration') 
+        }
+        let container = document.getElementById('container');
+        let int = false;
+        setInterval(()=>{
+            if(int){
+                container.classList.remove('animate__animated');
+                container.classList.remove('animate__swing');
+            }else{
+                container.classList.add('animate__animated','animate__swing');
+            }
+            int = !int;
+        },5000);
     });
 </script>
 

@@ -1,4 +1,5 @@
 import { ipcMain } from "electron";
+import { rootApp } from "./main";
 import { unreadApp } from "./unread";
 
 
@@ -23,16 +24,22 @@ class Listener {
                         this.startElectronIntegration(e)
                         break;
                     case 'UNREAD:COUNT':
-                       
+
                         if (!unreadApp.mainWindow || unreadApp.mainWindow.isDestroyed()) {
-                            unreadApp.createWindow() 
-                        } 
-                        if(arg.message > 0){
+                            unreadApp.createWindow()
+                        }
+                        if (arg.message > 0) {
                             unreadApp.mainWindow.show()
                         } else {
                             unreadApp.mainWindow.hide()
                         }
                         unreadApp.mainWindow.webContents.send('asynchronous-reply', arg.message)
+                        break;
+                    case 'UNREAD:COUNT:CLICK':
+                        if (!rootApp.mainWindow || rootApp.mainWindow.isDestroyed()) {
+                            rootApp.createWindow()
+                        }
+                        rootApp.mainWindow.show()
                         break;
                     case 'ATS_BEELINE_ALL':
                         //console.log('ATS_BEELINE_ALL', arg.message)

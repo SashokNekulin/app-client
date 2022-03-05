@@ -18,7 +18,7 @@ class UnreadApp {
         width: 60,
         height: 60,
         x: s.workAreaSize.width - 60,
-        y: s.workAreaSize.height - 200,
+        y: s.workAreaSize.height - 100,
         show: false,
         icon: path.join(__dirname, '..', '..', 'src', 'assets', 'favicon-32x32.png'),
         resizable: false,
@@ -28,7 +28,8 @@ class UnreadApp {
         alwaysOnTop: true,
         type: 'toolbar',
         closable: false,
-        minimizable: false
+        minimizable: false,
+        paintWhenInitiallyHidden: false
       });
   
       //this.mainWindow.loadURL(ConfigApp.url + '/phone/call');
