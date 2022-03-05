@@ -14,7 +14,13 @@ if (!gotTheLock) {
   app.quit()
   app.exit()
 } else {
-  rootApp.mainWindow.show()
+  app.on('second-instance', (event, commandLine, workingDirectory) => {
+    // Someone tried to run a second instance, we should focus our window.
+    if (rootApp.mainWindow) {
+      //if (rootApp.mainWindow.isMinimized()) rootApp.mainWindow.restore()
+      rootApp.mainWindow.show()
+    }
+  })
 }
 
 app.on("ready", () => {
