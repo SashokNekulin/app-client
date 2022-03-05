@@ -13,6 +13,8 @@ const gotTheLock = app.requestSingleInstanceLock()
 if (!gotTheLock) {
   app.quit()
   app.exit()
+} else {
+  rootApp.mainWindow.show()
 }
 
 app.on("ready", () => {
