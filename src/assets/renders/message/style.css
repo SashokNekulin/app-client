@@ -30,7 +30,8 @@ body{
     text-align: center;
 }
 .container .unread .img img{
-    width: 38px;      
+    width: 38px;     
+    pointer-events: none; 
 }
 
 :root{
