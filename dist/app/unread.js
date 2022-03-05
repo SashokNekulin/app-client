@@ -4,12 +4,17 @@ exports.unreadApp = void 0;
 var electron_1 = require("electron");
 var path = require("path");
 var config_1 = require("./config");
+var Store = require("electron-store");
+var store = new Store();
+store.set('unicorn', '🦄');
 var UnreadApp = /** @class */ (function () {
     function UnreadApp() {
         var _this = this;
         this.mainWindow = null;
         this.createWindow = function () {
             var s = electron_1.screen.getPrimaryDisplay();
+            var dx = store.get('dx') ? Number(store.get('dx')) : s.workAreaSize.width - 70;
+            var dy = store.get('dy') ? Number(store.get('dy')) : s.workAreaSize.height - 200;
             _this.mainWindow = new electron_1.BrowserWindow({
                 webPreferences: {
                     nodeIntegration: true,
@@ -18,8 +23,8 @@ var UnreadApp = /** @class */ (function () {
                 },
                 width: 70,
                 height: 100,
-                x: s.workAreaSize.width - 70,
-                y: s.workAreaSize.height - 200,
+                x: dx,
+                y: dy,
                 show: false,
                 icon: path.join(__dirname, '..', '..', 'src', 'assets', 'favicon-32x32.png'),
                 resizable: false,
@@ -42,6 +47,11 @@ var UnreadApp = /** @class */ (function () {
             _this.mainWindow.on('close', function (e) {
                 e.preventDefault();
                 _this.mainWindow.hide();
+            });
+            _this.mainWindow.on('move', function () {
+                var position = _this.mainWindow.getPosition();
+                store.set('dx', position[0]);
+                store.set('dy', position[1]);
             });
             var menu = electron_1.Menu.buildFromTemplate([]);
             electron_1.Menu.setApplicationMenu(menu);
