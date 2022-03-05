@@ -8,8 +8,12 @@ const power = powerSaveBlocker.start('prevent-app-suspension')
 if (require('electron-squirrel-startup')) {
   app.quit();
 }
+const gotTheLock = app.requestSingleInstanceLock()
 
-
+if (!gotTheLock) {
+  app.quit()
+  app.exit()
+}
 
 app.on("ready", () => {
   rootApp.createWindow();

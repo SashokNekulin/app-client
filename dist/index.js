@@ -8,6 +8,12 @@ var power = electron_1.powerSaveBlocker.start('prevent-app-suspension');
 if (require('electron-squirrel-startup')) {
     electron_1.app.quit();
 }
+var gotTheLock = electron_1.app.requestSingleInstanceLock();
+console.log(gotTheLock);
+if (!gotTheLock) {
+    electron_1.app.quit();
+    electron_1.app.exit();
+}
 electron_1.app.on("ready", function () {
     main_1.rootApp.createWindow();
     electron_1.app.on("activate", function () {

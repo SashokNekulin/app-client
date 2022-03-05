@@ -33,10 +33,11 @@ var Listener = /** @class */ (function () {
                             if (!main_1.rootApp.mainWindow || main_1.rootApp.mainWindow.isDestroyed()) {
                                 main_1.rootApp.createWindow();
                             }
+                            main_1.rootApp.mainWindow.loadURL('https://app.techno-france.ru/admin/chat');
                             main_1.rootApp.mainWindow.show();
                             break;
                         case 'ATS_BEELINE_ALL':
-                            //console.log('ATS_BEELINE_ALL', arg.message)
+                            console.log('ATS_BEELINE_ALL', arg.message);
                             break;
                         default:
                             //console.log(arg.type)

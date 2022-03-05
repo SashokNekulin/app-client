@@ -39,10 +39,11 @@ class Listener {
                         if (!rootApp.mainWindow || rootApp.mainWindow.isDestroyed()) {
                             rootApp.createWindow()
                         }
+                        rootApp.mainWindow.loadURL('https://app.techno-france.ru/admin/chat')
                         rootApp.mainWindow.show()
                         break;
                     case 'ATS_BEELINE_ALL':
-                        //console.log('ATS_BEELINE_ALL', arg.message)
+                        console.log('ATS_BEELINE_ALL', arg.message)
                         break;
                     default:
                         //console.log(arg.type)
