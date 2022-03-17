@@ -1,6 +1,7 @@
-import { BrowserWindow, Menu , screen} from "electron";
+import { BrowserWindow, Menu , systemPreferences} from "electron";
 import * as path from "path";
 import { ConfigApp } from "./config";
+const fs = require('fs')
 
 class RootApp {
 
@@ -20,7 +21,7 @@ class RootApp {
         icon: path.join(__dirname, '..', '..', 'src', 'assets', 'favicon-32x32.png'),
         frame: true
       });
-  
+     
       this.mainWindow.loadURL(ConfigApp.url);
   
       this.mainWindow.once('ready-to-show', () => {

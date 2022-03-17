@@ -36,6 +36,8 @@ if (!gotTheLock) {
     }
   });
 
+  app.commandLine.appendSwitch('js-flags', '--max-old-space-size=4096')
+
   AppListener.init()
   new TrayApp().init()
 }

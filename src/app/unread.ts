@@ -44,7 +44,7 @@ class UnreadApp {
         this.mainWindow.show()
       })
   
-      if(ConfigApp.dev) this.mainWindow.webContents.openDevTools();
+      //if(ConfigApp.dev) this.mainWindow.webContents.openDevTools();
   
       this.mainWindow.on('close', (e)=> {
         e.preventDefault()

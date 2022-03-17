@@ -34,6 +34,7 @@ else {
             electron_1.app.quit();
         }
     });
+    electron_1.app.commandLine.appendSwitch('js-flags', '--max-old-space-size=4096');
     listener_1.AppListener.init();
     new trey_1.TrayApp().init();
 }

@@ -3,10 +3,8 @@ exports.__esModule = true;
 exports.unreadApp = void 0;
 var electron_1 = require("electron");
 var path = require("path");
-var config_1 = require("./config");
 var Store = require("electron-store");
 var store = new Store();
-store.set('unicorn', '🦄');
 var UnreadApp = /** @class */ (function () {
     function UnreadApp() {
         var _this = this;
@@ -42,8 +40,7 @@ var UnreadApp = /** @class */ (function () {
             _this.mainWindow.once('ready-to-show', function () {
                 _this.mainWindow.show();
             });
-            if (config_1.ConfigApp.dev)
-                _this.mainWindow.webContents.openDevTools();
+            //if(ConfigApp.dev) this.mainWindow.webContents.openDevTools();
             _this.mainWindow.on('close', function (e) {
                 e.preventDefault();
                 _this.mainWindow.hide();

@@ -4,6 +4,7 @@ exports.rootApp = void 0;
 var electron_1 = require("electron");
 var path = require("path");
 var config_1 = require("./config");
+var fs = require('fs');
 var RootApp = /** @class */ (function () {
     function RootApp() {
         var _this = this;
