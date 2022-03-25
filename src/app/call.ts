@@ -33,7 +33,7 @@ class CallApp {
         this.mainWindow.show()
       })
   
-      if(ConfigApp.dev) this.mainWindow.webContents.openDevTools();
+      
   
       this.mainWindow.on('close', (e)=> {
         e.preventDefault()

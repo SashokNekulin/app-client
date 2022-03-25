@@ -37,14 +37,12 @@ class UnreadApp {
         paintWhenInitiallyHidden: false
       });
   
-      //this.mainWindow.loadURL(ConfigApp.url + '/phone/call');
       this.mainWindow.loadFile(path.join(__dirname, '..', '..', 'src', 'assets', 'renders', 'message', 'index.html' ))
 
       this.mainWindow.once('ready-to-show', () => {
         this.mainWindow.show()
       })
-  
-      //if(ConfigApp.dev) this.mainWindow.webContents.openDevTools();
+
   
       this.mainWindow.on('close', (e)=> {
         e.preventDefault()
