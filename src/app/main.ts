@@ -1,7 +1,7 @@
-import { BrowserWindow, Menu, shell} from "electron";
+import { BrowserWindow, Menu} from "electron";
 import * as path from "path";
 import { ConfigApp } from "./config";
-const fs = require('fs')
+
 
 class RootApp {
 
