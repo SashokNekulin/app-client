@@ -35,12 +35,10 @@ var UnreadApp = /** @class */ (function () {
                 minimizable: false,
                 paintWhenInitiallyHidden: false
             });
-            //this.mainWindow.loadURL(ConfigApp.url + '/phone/call');
             _this.mainWindow.loadFile(path.join(__dirname, '..', '..', 'src', 'assets', 'renders', 'message', 'index.html'));
             _this.mainWindow.once('ready-to-show', function () {
                 _this.mainWindow.show();
             });
-            //if(ConfigApp.dev) this.mainWindow.webContents.openDevTools();
             _this.mainWindow.on('close', function (e) {
                 e.preventDefault();
                 _this.mainWindow.hide();

@@ -4,7 +4,6 @@ exports.rootApp = void 0;
 var electron_1 = require("electron");
 var path = require("path");
 var config_1 = require("./config");
-var fs = require('fs');
 var RootApp = /** @class */ (function () {
     function RootApp() {
         var _this = this;
@@ -26,20 +25,10 @@ var RootApp = /** @class */ (function () {
             _this.mainWindow.once('ready-to-show', function () {
                 _this.mainWindow.show();
             });
-            if (config_1.ConfigApp.dev)
-                _this.mainWindow.webContents.openDevTools();
             _this.mainWindow.on('close', function (e) {
                 e.preventDefault();
                 _this.mainWindow.hide();
             });
-            var openExternalLinksInOSBrowser = function (event, url) {
-                if (url.match(/.*app.tecno-france.ru.*/gi) === null && (url.startsWith('http:') || url.startsWith('https:'))) {
-                    event.preventDefault();
-                    electron_1.shell.openExternal(url);
-                }
-            };
-            _this.mainWindow.webContents.on('new-window', openExternalLinksInOSBrowser);
-            _this.mainWindow.webContents.on('will-navigate', openExternalLinksInOSBrowser);
             var menu = electron_1.Menu.buildFromTemplate([]);
             electron_1.Menu.setApplicationMenu(menu);
         };

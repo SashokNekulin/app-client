@@ -30,8 +30,6 @@ var CallApp = /** @class */ (function () {
             _this.mainWindow.once('ready-to-show', function () {
                 _this.mainWindow.show();
             });
-            if (config_1.ConfigApp.dev)
-                _this.mainWindow.webContents.openDevTools();
             _this.mainWindow.on('close', function (e) {
                 e.preventDefault();
                 _this.mainWindow.hide();
