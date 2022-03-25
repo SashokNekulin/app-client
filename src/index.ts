@@ -1,4 +1,4 @@
-import { app, BrowserWindow, powerSaveBlocker, Notification } from "electron";
+import { app, BrowserWindow, powerSaveBlocker } from "electron";
 import { AppListener } from "./app/listener";
 import { rootApp } from "./app/main";
 import { TrayApp } from "./app/trey";
@@ -39,6 +39,7 @@ if (!gotTheLock) {
   app.commandLine.appendSwitch('js-flags', '--max-old-space-size=4096')
 
   AppListener.init()
+  
   new TrayApp().init()
 }
 

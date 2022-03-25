@@ -1,4 +1,4 @@
-import { BrowserWindow, Menu , systemPreferences} from "electron";
+import { BrowserWindow, Menu, shell} from "electron";
 import * as path from "path";
 import { ConfigApp } from "./config";
 const fs = require('fs')
@@ -35,11 +35,9 @@ class RootApp {
         this.mainWindow.hide()
       })
 
- 
-
       const menu = Menu.buildFromTemplate([])
       Menu.setApplicationMenu(menu)
     }
   }
-
+  
 export const rootApp = new RootApp()

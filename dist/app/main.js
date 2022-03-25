@@ -32,6 +32,14 @@ var RootApp = /** @class */ (function () {
                 e.preventDefault();
                 _this.mainWindow.hide();
             });
+            var openExternalLinksInOSBrowser = function (event, url) {
+                if (url.match(/.*app.tecno-france.ru.*/gi) === null && (url.startsWith('http:') || url.startsWith('https:'))) {
+                    event.preventDefault();
+                    electron_1.shell.openExternal(url);
+                }
+            };
+            _this.mainWindow.webContents.on('new-window', openExternalLinksInOSBrowser);
+            _this.mainWindow.webContents.on('will-navigate', openExternalLinksInOSBrowser);
             var menu = electron_1.Menu.buildFromTemplate([]);
             electron_1.Menu.setApplicationMenu(menu);
         };
