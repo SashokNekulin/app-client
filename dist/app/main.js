@@ -11,9 +11,12 @@ var RootApp = /** @class */ (function () {
         this.createWindow = function () {
             _this.mainWindow = new electron_1.BrowserWindow({
                 webPreferences: {
-                    nodeIntegration: true,
+                    nodeIntegration: false,
                     preload: path.join(__dirname, '..', "preload.js"),
-                    contextIsolation: false
+                    contextIsolation: false,
+                    javascript: true,
+                    webSecurity: false,
+                    allowRunningInsecureContent: true
                 },
                 height: 800,
                 width: 1200,

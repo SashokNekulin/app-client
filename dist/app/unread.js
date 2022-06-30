@@ -17,7 +17,8 @@ var UnreadApp = /** @class */ (function () {
                 webPreferences: {
                     nodeIntegration: true,
                     preload: path.join(__dirname, '..', "preload.js"),
-                    contextIsolation: false
+                    contextIsolation: false,
+                    devTools: true
                 },
                 width: 70,
                 height: 100,

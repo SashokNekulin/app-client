@@ -18,7 +18,8 @@ class UnreadApp {
         webPreferences: {
           nodeIntegration: true,
           preload: path.join(__dirname, '..', "preload.js"),
-          contextIsolation: false
+          contextIsolation: false,
+          devTools: true
         },
         width: 70,
         height: 100,
@@ -36,7 +37,7 @@ class UnreadApp {
         minimizable: false,
         paintWhenInitiallyHidden: false
       });
-  
+      
       this.mainWindow.loadFile(path.join(__dirname, '..', '..', 'src', 'assets', 'renders', 'message', 'index.html' ))
 
       this.mainWindow.once('ready-to-show', () => {
@@ -52,6 +53,7 @@ class UnreadApp {
         const position = this.mainWindow.getPosition()
         store.set('dx' , position[0])
         store.set('dy' , position[1])
+        
       })
       const menu = Menu.buildFromTemplate([])
       Menu.setApplicationMenu(menu)

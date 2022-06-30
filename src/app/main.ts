@@ -10,10 +10,12 @@ class RootApp {
     public createWindow = () => {
       this.mainWindow = new BrowserWindow({
         webPreferences: {
-          nodeIntegration: true,
+          nodeIntegration: false,
           preload: path.join(__dirname, '..', "preload.js"),
           contextIsolation: false,
-          //nodeIntegrationInWorker: true
+          javascript: true,
+          webSecurity: false,
+          allowRunningInsecureContent: true,
         },
         height: 800,
         width: 1200,
@@ -21,7 +23,9 @@ class RootApp {
         icon: path.join(__dirname, '..', '..', 'src', 'assets', 'favicon-32x32.png'),
         frame: true
       });
-     
+
+
+
       this.mainWindow.loadURL(ConfigApp.url);
   
       this.mainWindow.once('ready-to-show', () => {
