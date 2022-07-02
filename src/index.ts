@@ -21,9 +21,11 @@ if (!gotTheLock) {
       rootApp.mainWindow.show()
     }
   })
+
   app.on("ready", () => {
     rootApp.createWindow();
-    ///rootApp.mainWindow.webContents.openDevTools()
+
+    //rootApp.mainWindow.webContents.openDevTools()
     app.on("activate", function () {
       if (BrowserWindow.getAllWindows().length === 0) rootApp.createWindow();
     });

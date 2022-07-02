@@ -6,13 +6,14 @@ import { ConfigApp } from "./config";
 class RootApp {
 
     public mainWindow: BrowserWindow = null
+    public closeWindow: BrowserWindow = null
   
     public createWindow = () => {
       this.mainWindow = new BrowserWindow({
         webPreferences: {
-          nodeIntegration: false,
-          preload: path.join(__dirname, '..', "preload.js"),
+          nodeIntegration: true,
           contextIsolation: false,
+          preload: path.join(__dirname, '..', "preload.js"),
           javascript: true,
           webSecurity: false,
           allowRunningInsecureContent: true,
@@ -24,10 +25,8 @@ class RootApp {
         frame: true
       });
 
-
-
       this.mainWindow.loadURL(ConfigApp.url);
-  
+      
       this.mainWindow.once('ready-to-show', () => {
         this.mainWindow.show()
       })
@@ -41,6 +40,7 @@ class RootApp {
       const menu = Menu.buildFromTemplate([])
       Menu.setApplicationMenu(menu)
     }
+
   }
   
 export const rootApp = new RootApp()

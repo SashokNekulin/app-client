@@ -1,4 +1,4 @@
-import { ipcMain } from "electron";
+import { app, ipcMain } from "electron";
 import { rootApp } from "./main";
 import { unreadApp } from "./unread";
 
@@ -14,43 +14,46 @@ class Listener {
     private start = true
 
     init = () => {
-        if (this.start) {
+        app.on('ready', () => {
+            if (this.start) {
 
-            this.start = false
-
-            ipcMain.on('electron_integration', (e: Electron.IpcMainEvent, arg: ElectronMessage) => {
-                switch (arg.type) {
-                    case 'START:ELECTRON:INTEGRATION':
-                        this.startElectronIntegration(e)
-                        break;
-                    case 'UNREAD:COUNT':
-
-                        if (!unreadApp.mainWindow || unreadApp.mainWindow.isDestroyed()) {
-                            unreadApp.createWindow()
-                        }
-                        if (arg.message > 0) {
-                            unreadApp.mainWindow.show()
-                        } else {
-                            unreadApp.mainWindow.hide()
-                        }
-                        unreadApp.mainWindow.webContents.send('asynchronous-reply', arg.message)
-                        break;
-                    case 'UNREAD:COUNT:CLICK':
-                        if (!rootApp.mainWindow || rootApp.mainWindow.isDestroyed()) {
-                            rootApp.createWindow()
-                        }
-                        rootApp.mainWindow.loadURL('https://app.techno-france.ru/admin/chat')
-                        rootApp.mainWindow.show()
-                        break;
-                    case 'ATS_BEELINE_ALL':
-                        console.log('ATS_BEELINE_ALL', arg.message)
-                        break;
-                    default:
-                        //console.log(arg.type)
-                        break;
-                }
-            })
-        }
+                this.start = false
+    
+                ipcMain.on('electron_integration', (e: Electron.IpcMainEvent, arg: ElectronMessage) => {
+                    //console.log(arg.type)
+                    switch (arg.type) {
+                        case 'START:ELECTRON:INTEGRATION':
+                            this.startElectronIntegration(e)
+                            break;
+                        case 'UNREAD:COUNT':
+    
+                            if (!unreadApp.mainWindow || unreadApp.mainWindow.isDestroyed()) {
+                                unreadApp.createWindow()
+                            }
+                            if (arg.message > 0) {
+                                unreadApp.mainWindow.show()
+                            } else {
+                                unreadApp.mainWindow.hide()
+                            }
+                            unreadApp.mainWindow.webContents.send('asynchronous-reply', arg.message)
+                            break;
+                        case 'UNREAD:COUNT:CLICK':
+                            if (!rootApp.mainWindow || rootApp.mainWindow.isDestroyed()) {
+                                rootApp.createWindow()
+                            }
+                            rootApp.mainWindow.loadURL('https://app.techno-france.ru/admin/chat')
+                            rootApp.mainWindow.show()
+                            break;
+                        case 'ATS_BEELINE_ALL':
+                            //console.log('ATS_BEELINE_ALL', arg.message)
+                            break;
+                        default:
+                            //console.log(arg.type)
+                            break;
+                    }
+                })
+            }
+        });
 
     }
 
