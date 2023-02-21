@@ -1,11 +1,12 @@
 import { app, ipcMain } from "electron";
+import { callOnlineApp } from "./call_online";
 import { rootApp } from "./main";
 import { unreadApp } from "./unread";
 
 
 export interface ElectronMessage {
     type: string
-    message: any
+    message: any 
 }
 
 class Listener {
@@ -18,7 +19,7 @@ class Listener {
             if (this.start) {
 
                 this.start = false
-    
+                
                 ipcMain.on('electron_integration', (e: Electron.IpcMainEvent, arg: ElectronMessage) => {
                     //console.log(arg.type)
                     switch (arg.type) {
@@ -46,6 +47,19 @@ class Listener {
                             break;
                         case 'ATS_BEELINE_ALL':
                             //console.log('ATS_BEELINE_ALL', arg.message)
+                            break;
+                        case 'PHONE_CALL_ONLINE':
+                            //console.log('PHONE_CALL_ONLINE', arg.message)
+
+                            if (!callOnlineApp.mainWindow || callOnlineApp.mainWindow.isDestroyed()) {
+                                callOnlineApp.createWindow()
+                            }
+                            if (arg.message.length > 0) {
+                                callOnlineApp.mainWindow.show()
+                            } else {
+                                callOnlineApp.mainWindow.hide()
+                            }
+                            callOnlineApp.mainWindow.webContents.send('asynchronous', arg.message)
                             break;
                         default:
                             //console.log(arg.type)

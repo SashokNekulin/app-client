@@ -23,7 +23,7 @@ else {
     });
     electron_1.app.on("ready", function () {
         main_1.rootApp.createWindow();
-        main_1.rootApp.mainWindow.webContents.openDevTools();
+        //rootApp.mainWindow.webContents.openDevTools()
         electron_1.app.on("activate", function () {
             if (electron_1.BrowserWindow.getAllWindows().length === 0)
                 main_1.rootApp.createWindow();

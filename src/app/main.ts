@@ -24,7 +24,7 @@ class RootApp {
         icon: path.join(__dirname, '..', '..', 'src', 'assets', 'favicon-32x32.png'),
         frame: true
       });
-
+      ///this.mainWindow.webContents.openDevTools();
       this.mainWindow.loadURL(ConfigApp.url);
       
       this.mainWindow.once('ready-to-show', () => {

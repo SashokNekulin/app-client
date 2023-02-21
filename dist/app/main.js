@@ -8,12 +8,13 @@ var RootApp = /** @class */ (function () {
     function RootApp() {
         var _this = this;
         this.mainWindow = null;
+        this.closeWindow = null;
         this.createWindow = function () {
             _this.mainWindow = new electron_1.BrowserWindow({
                 webPreferences: {
-                    nodeIntegration: false,
-                    preload: path.join(__dirname, '..', "preload.js"),
+                    nodeIntegration: true,
                     contextIsolation: false,
+                    preload: path.join(__dirname, '..', "preload.js"),
                     javascript: true,
                     webSecurity: false,
                     allowRunningInsecureContent: true
@@ -24,6 +25,7 @@ var RootApp = /** @class */ (function () {
                 icon: path.join(__dirname, '..', '..', 'src', 'assets', 'favicon-32x32.png'),
                 frame: true
             });
+            ///this.mainWindow.webContents.openDevTools();
             _this.mainWindow.loadURL(config_1.ConfigApp.url);
             _this.mainWindow.once('ready-to-show', function () {
                 _this.mainWindow.show();
