@@ -1,7 +1,9 @@
 import { app, Menu, Tray, nativeImage } from "electron";
 import * as path from "path";
-import { callApp } from "./call";
+import { confApp } from "./conf";
 import { rootApp } from "./main";
+import {_store} from './listener'
+
 
 export class TrayApp {
     init = () => {
@@ -24,16 +26,21 @@ export class TrayApp {
                         rootApp.mainWindow.hide()
                     }
                 },
-                //callApp
-                /*{
-                    label: 'Позвонить', type: 'normal', click: () => {
-                        if (!callApp.mainWindow || callApp.mainWindow.isDestroyed()) {
-                            callApp.createWindow()
+                //confApp
+                {
+                    label: 'Настройки', type: 'normal', click: () => {
+                        if (!confApp.mainWindow || confApp.mainWindow.isDestroyed()) {
+                            confApp.createWindow()
                         } else {
-                            callApp.mainWindow.show()
+                            let arg = {
+                                ats: (_store.get('ats') || '0'),
+                                mes: (_store.get('mes') || '0')
+                            }
+                            confApp.mainWindow.show()
+                            confApp.mainWindow.webContents.send('asynchronous-in', arg)
                         }
                     }
-                },*/
+                },
                 { type: 'separator' },
                 {
                     label: 'Выход', type: 'normal', click: () => {

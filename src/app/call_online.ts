@@ -20,8 +20,8 @@ class CallOnlineApp {
                 contextIsolation: false,
                 devTools: true
             },
-            width: 400,
-            height: 150,
+            width: 350,
+            height: 91,
             x: dx,
             y: dy,
             show: false,
@@ -36,7 +36,7 @@ class CallOnlineApp {
             minimizable: false,
             paintWhenInitiallyHidden: false
         });
-
+        //this.mainWindow.webContents.openDevTools();
         this.mainWindow.loadFile(path.join(__dirname, '..', '..', 'src', 'assets', 'renders', 'callOnline', 'index.html'))
 
         this.mainWindow.once('ready-to-show', () => {

@@ -3,7 +3,9 @@ exports.__esModule = true;
 exports.TrayApp = void 0;
 var electron_1 = require("electron");
 var path = require("path");
+var conf_1 = require("./conf");
 var main_1 = require("./main");
+var listener_1 = require("./listener");
 var TrayApp = /** @class */ (function () {
     function TrayApp() {
         this.init = function () {
@@ -27,16 +29,22 @@ var TrayApp = /** @class */ (function () {
                             main_1.rootApp.mainWindow.hide();
                         }
                     },
-                    //callApp
-                    /*{
-                        label: 'Позвонить', type: 'normal', click: () => {
-                            if (!callApp.mainWindow || callApp.mainWindow.isDestroyed()) {
-                                callApp.createWindow()
-                            } else {
-                                callApp.mainWindow.show()
+                    //confApp
+                    {
+                        label: 'Настройки', type: 'normal', click: function () {
+                            if (!conf_1.confApp.mainWindow || conf_1.confApp.mainWindow.isDestroyed()) {
+                                conf_1.confApp.createWindow();
+                            }
+                            else {
+                                var arg = {
+                                    ats: (listener_1._store.get('ats') || '0'),
+                                    mes: (listener_1._store.get('mes') || '0')
+                                };
+                                conf_1.confApp.mainWindow.show();
+                                conf_1.confApp.mainWindow.webContents.send('asynchronous-in', arg);
                             }
                         }
-                    },*/
+                    },
                     { type: 'separator' },
                     {
                         label: 'Выход', type: 'normal', click: function () {

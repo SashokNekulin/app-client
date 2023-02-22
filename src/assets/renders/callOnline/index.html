@@ -3,8 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-   
+
     <link rel="stylesheet" href="style.css" />
+     <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      try {
+        const { ipcRenderer } = require("electron");
+        let count = document.getElementById("container");
+
+        ipcRenderer.on("asynchronous", (event, arg) => {
+          let a = "";
+          arg.forEach((element) => {
+            a =
+              a +
+              `<div class="phone">
+          <div class="icon">
+            <div class="im">
+              <img src="./${element.state === 'Active' ? 'calling': 'call'}.png" alt="">
+            </div>
+            <div class="ph">
+              ${element.pattern}
+            </div>
+          </div>
+          <div class="info">
+            <div class="name"  onclick="navigator.clipboard.writeText('${element.name || element.phone}')">${element.name || element.phone}</div>
+            <div class="tel" onclick="navigator.clipboard.writeText('${element.phone}')">${element.phone}</div>
+          </div>
+        </div>`;
+          });
+          count.innerHTML = a;
+        });
+      } catch (error) {
+        console.log("not found electron integration");
+      }
+      var copyToClipboard = (text) => {
+        window.prompt(text);
+      }
+    });
+  </script>
   </head>
   <body>
     <div class="root">
@@ -12,42 +48,7 @@
         <div class="drag">&Colon;</div>
       </div>
       <div class="container" id="container">
-        <div class="phone">
-                        <div class="icon">206</div>
-                        <div class="info">
-                            <h2>+79082903350</h2>
-                            <p>Никулин Александр Анатольевич</p>
-                        </div>
-                        </div>
-                        
       </div>
     </div>
   </body>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        try {
-            const { ipcRenderer } = require('electron');
-            let count = document.getElementById('container');
-            
-            ipcRenderer.on('asynchronous', (event, arg) => {
-                let a = '';
-                arg.forEach(element => {
-                    a = a + `<div class="phone">
-                        <div class="icon">${element.pattern}</div>
-                        <div class="info">
-                            <h2>${element.phone}</h2>
-                            <p>${element.name || '---'}</p>
-                        </div>
-                        </div>`;
-                });
-                count.innerHTML = a;
-            }); 
-
-
-        } catch (error) {
-           console.log('not found electron integration') 
-        }
-        
-    });
-</script>
 </html>

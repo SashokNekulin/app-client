@@ -1,0 +1,122 @@
+<link rel="stylesheet" href="style.css" />
+:root {
+    --scrollbarBg: rgba(250, 250, 250, 1);
+    --scrollbarThumb: rgba(0, 0, 0, 0.8);
+    --scrollbarWidth: 14px;
+    --scrollbarBorder: 4px solid var(--scrollbarBg);
+    --scrollbarBorderRadius: calc(var(--scrollbarWidth) / 2);
+}
+
+.container {
+    scrollbar-width: var(--scrollbarWidth);
+    scrollbar-color: var(--scrollbarThumb) var(--scrollbarBg);
+}
+
+.container::-webkit-scrollbar {
+    width: var(--scrollbarWidth);
+}
+
+.container::-webkit-scrollbar-track {
+    background: var(--scrollbarBg);
+    border-radius: var(--scrollbarBorderRadius);
+}
+
+.container::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbarThumb);
+    border-radius: var(--scrollbarBorderRadius);
+    border: var(--scrollbarBorder);
+}
+html{
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+}
+body{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #000000b8;
+    
+}
+p{
+    color: #fff;
+}
+.root {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 350px;
+    height: 91px;
+}
+.select {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.select select {
+    font-family: 'Arial';
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+    padding: 10px 15px;
+    outline: 0;
+    border: 1px solid #2221bd;
+    border-radius: 15px;
+    background: #ffffff;
+    color: #2221bd;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.select select::-ms-expand {
+    display: none;
+}
+
+.select select:hover,
+.select select:focus {
+    color: #000000;
+    background: #ffffff;
+}
+
+.select select:disabled {
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+.select_arrow {
+    position: absolute;
+    top: 18px;
+    right: 17px;
+    pointer-events: none;
+    border-style: solid;
+    border-width: 8px 5px 0px 5px;
+    border-color: #2221bd transparent transparent transparent;
+}
+
+.select select:hover~.select_arrow,
+.select select:focus~.select_arrow {
+    border-top-color: #000000;
+}
+
+.select select:disabled~.select_arrow {
+    border-top-color: #cccccc;
+}
+
+.container {
+    overflow: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 8px;
+}
+

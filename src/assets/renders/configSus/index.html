@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Настройки</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="data select">
+        <p>Показ входящих звонков</p>
+        <select name="ats" id="ats">
+          <option value="0" selected>Все звонки</option>
+          <option value="1">Не принимать</option>
+          <option value="200">200 Сервис Ялтинская 1</option>
+          <option value="201">201 Магазин Ялтинская 1</option>
+          <option value="202">202 Магазин Ялтинская 2</option>
+          <option value="203">203 Сервис Ялтинская 2</option>
+          <option value="204">204 Сервис ТЦ Акорус 1</option>
+          <option value="205">205 Магазин ТЦ Акорус</option>
+          <option value="206">206 Магазин Берлинка 1</option>
+          <option value="207">207 Сервис Берлинка 1</option>
+          <option value="208">208 Сервис ТЦ Акорус 2</option>
+          <option value="209">209 Сервис Берлинка 2</option>
+          <option value="210">210 Жалобы и предложения</option>
+          <option value="211">211 Магазин Берлинка 2</option>
+        </select>
+      </div>
+      <div class="data select">
+        <p>Не прочитанные сообщения</p>
+        <select name="mes" id="mes">
+          <option value="0" selected>Показывать</option>
+          <option value="1">Не показывать</option>
+        </select>
+      </div>
+    </div>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      try {
+        const { ipcRenderer } = require("electron");
+        let args = { mes: "0", ats: "0" };
+        const $mes = document.querySelector("#mes");
+        const $ats = document.querySelector("#ats");
+        const send = () => {
+          ipcRenderer.send("electron_integration", {
+            type: "CONF",
+            message: args,
+          });
+        };
+        $ats.addEventListener("change", function () {
+          args.ats = $ats.value;
+          send();
+        });
+        $mes.addEventListener("change", function () {
+          args.mes = $mes.value;
+          send();
+        });
+        ipcRenderer.on("asynchronous-in", (event, arg) => {
+          //console.log(arg);
+          args = arg;
+          selectIn(arg);
+        });
+        let selectIn = (arg) => {
+          $mes.value = args.mes;
+          $ats.value = args.ats;
+        };
+        selectIn(args);
+      } catch (error) {
+        console.log("not found electron integration");
+      }
+    });
+  </script>
+</html>

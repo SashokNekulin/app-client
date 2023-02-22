@@ -40,8 +40,8 @@ body{
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    width: 400px;
-    height: 102px;
+    width: 350px;
+    height: 91px;
 }
 
 .drag {
@@ -55,13 +55,13 @@ body{
     display: flex;
     text-align: right;
     color: #fff;
-    opacity: 0.3;
+    opacity: 0.5;
     height: 23px;
     justify-content: flex-end;
 }
 
 .dot div {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.5);
     padding-top: 8px;
     border-radius: 50%;
     width: 17px;
@@ -84,7 +84,8 @@ body{
     padding: 2px 16px;
     background: #000000b8;
     color: #fff;
-    margin-top: 3px;
+    margin-top: 2px;
+    margin-bottom: 2px;
     -ms-user-select: text;
     -moz-user-select: text;
     -webkit-user-select: text;
@@ -94,20 +95,45 @@ body{
     align-items: center;
 }
 .icon{
+    padding-top: 6px;
     padding-right: 20px;
-    font-size: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    padding-bottom: 6px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+.icon .im {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 2px;
+}
+.icon .im img{
+    width: 32px;
+    height: 32px;
 }
 .info {
+    padding-top: 6px;
     width: 100%;
     overflow: hidden;
+    padding-bottom: 6px;
 }
-.info h2{
-    letter-spacing: 2px;
-    line-height: 0;
+.info .name{
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 4px;
 }
-.info p {
-    width: 100%;
-    padding-right: 2px;
+.info .tel {
+    cursor: pointer;
+    margin-top: 4px;
     letter-spacing: 2px;
     font-size: 14px;
     font-weight: 600;

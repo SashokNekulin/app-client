@@ -1,10 +1,13 @@
 "use strict";
 exports.__esModule = true;
-exports.AppListener = void 0;
+exports.AppListener = exports._store = void 0;
 var electron_1 = require("electron");
 var call_online_1 = require("./call_online");
 var main_1 = require("./main");
 var unread_1 = require("./unread");
+var Store = require("electron-store");
+var store = new Store();
+exports._store = store;
 var Listener = /** @class */ (function () {
     function Listener() {
         var _this = this;
@@ -21,10 +24,11 @@ var Listener = /** @class */ (function () {
                                 _this.startElectronIntegration(e);
                                 break;
                             case 'UNREAD:COUNT':
+                                var mes = store.get('mes') || "0";
                                 if (!unread_1.unreadApp.mainWindow || unread_1.unreadApp.mainWindow.isDestroyed()) {
                                     unread_1.unreadApp.createWindow();
                                 }
-                                if (arg.message > 0) {
+                                if (arg.message > 0 && mes != "1") {
                                     unread_1.unreadApp.mainWindow.show();
                                 }
                                 else {
@@ -39,21 +43,39 @@ var Listener = /** @class */ (function () {
                                 main_1.rootApp.mainWindow.loadURL('https://app.techno-france.ru/admin/chat');
                                 main_1.rootApp.mainWindow.show();
                                 break;
+                            case 'CONF':
+                                store.set('ats', arg.message.ats || '0');
+                                store.set('mes', arg.message.mes || '0');
                             case 'ATS_BEELINE_ALL':
                                 //console.log('ATS_BEELINE_ALL', arg.message)
                                 break;
                             case 'PHONE_CALL_ONLINE':
-                                //console.log('PHONE_CALL_ONLINE', arg.message)
+                                var ats = store.get('ats') || "0";
+                                //console.log(ats);
+                                var newArg = [];
+                                for (var _i = 0, _a = arg.message; _i < _a.length; _i++) {
+                                    var item = _a[_i];
+                                    if (item.personality === 'Terminator') {
+                                        if (ats === "0") {
+                                            newArg.push(item);
+                                        }
+                                        else if (ats === "1") {
+                                        }
+                                        else if (ats === item.pattern) {
+                                            newArg.push(item);
+                                        }
+                                    }
+                                }
                                 if (!call_online_1.callOnlineApp.mainWindow || call_online_1.callOnlineApp.mainWindow.isDestroyed()) {
                                     call_online_1.callOnlineApp.createWindow();
                                 }
-                                if (arg.message.length > 0) {
+                                if (newArg.length > 0) {
                                     call_online_1.callOnlineApp.mainWindow.show();
                                 }
                                 else {
                                     call_online_1.callOnlineApp.mainWindow.hide();
                                 }
-                                call_online_1.callOnlineApp.mainWindow.webContents.send('asynchronous', arg.message);
+                                call_online_1.callOnlineApp.mainWindow.webContents.send('asynchronous', newArg);
                                 break;
                             default:
                                 //console.log(arg.type)
@@ -66,7 +88,7 @@ var Listener = /** @class */ (function () {
     }
     Listener.prototype.emit = function (arg) {
         if (this.start || !this.sender) {
-            console.log('ELECTRON INTEGRATION DISCONECT');
+            //console.log('ELECTRON INTEGRATION DISCONECT');
             return;
         }
         this.sender.send('electron_integration', arg);

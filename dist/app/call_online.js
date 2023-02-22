@@ -20,8 +20,8 @@ var CallOnlineApp = /** @class */ (function () {
                     contextIsolation: false,
                     devTools: true
                 },
-                width: 400,
-                height: 150,
+                width: 350,
+                height: 91,
                 x: dx,
                 y: dy,
                 show: false,
@@ -36,6 +36,7 @@ var CallOnlineApp = /** @class */ (function () {
                 minimizable: false,
                 paintWhenInitiallyHidden: false
             });
+            //this.mainWindow.webContents.openDevTools();
             _this.mainWindow.loadFile(path.join(__dirname, '..', '..', 'src', 'assets', 'renders', 'callOnline', 'index.html'));
             _this.mainWindow.once('ready-to-show', function () {
                 _this.mainWindow.show();
