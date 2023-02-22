@@ -49,9 +49,9 @@ var Listener = /** @class */ (function () {
                             case 'ATS_BEELINE_ALL':
                                 //console.log('ATS_BEELINE_ALL', arg.message)
                                 break;
-                            case 'PHONE_CALL_ONLINE':
+                            case 'PHONE_CALL_ONLINE_ALL':
                                 var ats = store.get('ats') || "0";
-                                //console.log(ats);
+                                //console.log(ats)
                                 var newArg = [];
                                 for (var _i = 0, _a = arg.message; _i < _a.length; _i++) {
                                     var item = _a[_i];
@@ -88,7 +88,7 @@ var Listener = /** @class */ (function () {
     }
     Listener.prototype.emit = function (arg) {
         if (this.start || !this.sender) {
-            //console.log('ELECTRON INTEGRATION DISCONECT');
+            console.log('ELECTRON INTEGRATION DISCONECT');
             return;
         }
         this.sender.send('electron_integration', arg);

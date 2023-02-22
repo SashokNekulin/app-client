@@ -53,7 +53,7 @@ class Listener {
                         case 'ATS_BEELINE_ALL':
                             //console.log('ATS_BEELINE_ALL', arg.message)
                             break;
-                        case 'PHONE_CALL_ONLINE':
+                        case 'PHONE_CALL_ONLINE_ALL':
                             let ats = store.get('ats') || "0"
                             //console.log(ats)
                             let newArg = []

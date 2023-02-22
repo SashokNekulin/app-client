@@ -13,7 +13,8 @@ var ConfApp = /** @class */ (function () {
                 webPreferences: {
                     nodeIntegration: true,
                     preload: path.join(__dirname, '..', "preload.js"),
-                    contextIsolation: false
+                    contextIsolation: false,
+                    devTools: true
                 },
                 height: 400,
                 width: 400,
